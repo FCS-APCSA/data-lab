@@ -9,40 +9,40 @@ public class Health {
         //initializes the allstates Array to contain WorldBank Objects with information from the csv
         allstates= ds.fetchArray("WorldBank","Country_Region","World_Bank_Name","Health_exp_pct_GDP_2016","Health_exp_per_capita_USD_2016");
     }
-    public void highestPercentGDP(){
-        //sets the first object as the highest percent GDP
-        double highest=allstates[0].getPercentGDP();
-        String highestName=allstates[0].getName();
+    public void lowestPercentGDP(){
+        //sets the first object as the minimum percent GDP
+        double minimum=allstates[0].getPercentGDP();
+        String minimumName=allstates[0].getName();
         //for loop iterates through the WorldBank objects in the array and gets their % GDP expenditure values
-        //if that value is bigger than that of the object in highest, the bigger object replaces the old object 
+        //if that value is smaller than that of the object in highest, the smaller object replaces the old object 
         //as the highest (replaces the name as well)
         for(int i=0; i<allstates.length; i++){
-            if(allstates[i].getPercentGDP()>highest){
-                highest=allstates[i].getPercentGDP();
-                highestName=allstates[i].getName();
+            if(allstates[i].getPercentGDP()<minimum){
+                minimum=allstates[i].getPercentGDP();
+                minimumName=allstates[i].getName();
             }   
         }
         //prints out results
-        System.out.print("The World Bank that spends the most money in proportion to their GDP (total money made by a country made in a year through imports and exports) is ");
-        System.out.println(highestName+" where medical expenditures are "+highest+"% of the GDP.");
+        System.out.print("The World Bank that spends the least money on health expenditures in proportion to their GDP (total money made by a country in a year through imports and exports) is ");
+        System.out.println(minimumName+" where medical expenditures are "+minimum+"% of the GDP.");
     }
     
-    public void highestPerCapita(){
-        //sets the first object as the highest per capita
-        double highest=allstates[0].getperCapita();
-        String highestName=allstates[0].getName();
+    public void lowestPerCapita(){
+        //sets the first object as the minimum per capita
+        double minimum=allstates[0].getperCapita();
+        String minimumName=allstates[0].getName();
         //for loop iterates through the WorldBank objects in the array and gets their per capita expenditure values
-        //if that value is bigger than that of the object in highest, the bigger object replaces the old object 
+        //if that value is smaller than that of the object in highest, the smaller object replaces the old object 
         //as the highest (replaces the name as well)
         for(int i=0; i<allstates.length; i++){
-            if(allstates[i].getperCapita()>highest){
-                highest=allstates[i].getperCapita();
-                highestName=allstates[i].getName();
+            if(allstates[i].getperCapita()<minimum){
+                minimum=allstates[i].getperCapita();
+                minimumName=allstates[i].getName();
             }   
         }
         //prints results
-        System.out.print("The World Bank that spends the most on medical expenditures per person is ");
-        System.out.println(highestName+" where medical expenditures per person are "+highest+" per person");
+        System.out.print("The World Bank that spends the least on medical expenditures per person is ");
+        System.out.println(minimumName+" where medical expenditures per person are "+minimum+" per person");
     }
     // the findPerCapita and findPercentGDP takes an input from the user and checks to see if an object in 
     // the arraylist has the same name as the input. If it does, then it prints out the appropriate information
@@ -58,7 +58,7 @@ public class Health {
             }
         }
         if(hasName){
-            System.out.println("The world bank of "+allstates[index].getName()+" spends $"+allstates[index].getperCapita()+" USD per citizen.");
+            System.out.println("The world bank of "+allstates[index].getName()+" reports that each citizen spends around $"+allstates[index].getperCapita()+" USD for medical expenditures.");
         }else{
             System.out.println("The country/region you searched for does not exist in this dataset.");
         }
